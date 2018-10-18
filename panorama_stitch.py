@@ -25,6 +25,16 @@ class PanoramaStitcher:
         (key_points_from_image1, features_from_image1) = self.get_key_points_and_features(image1)
         (key_points_from_image2, features_from_image2) = self.get_key_points_and_features(image2)
 
+        homography_matrix = self.get_homography_matrix(key_points_from_image1, features_from_image1,
+                                                       key_points_from_image2, features_from_image2)
+
+        result = cv2.warpPerspective(image1, homography_matrix,
+                                     (image1.shape[1] + image2.shape[1], image1.shape[0]))
+
+        result[:image2.shape[0], :image2.shape[1]] = image2
+
+        return result
+
     def get_key_points_and_features(self, image):
         """
         :param image:
