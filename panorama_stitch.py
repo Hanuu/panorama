@@ -31,7 +31,9 @@ class PanoramaStitcher:
         result = cv2.warpPerspective(image1, homography_matrix,
                                      (image1.shape[1] + image2.shape[1], image1.shape[0]))
 
-        result[:image2.shape[0], :image2.shape[1]] = image2
+        # this part is wrong
+        # return result
+        result[0:image2.shape[0], 0:image2.shape[1]] = image2
 
         return result
 
@@ -55,23 +57,17 @@ class PanoramaStitcher:
         :param features_from_image2:
         :return: homography matrix
         """
-        raw_matches = cv2.DescriptionMatcher_create("BruteForce").knnMatch(features_from_image1,
+        raw_matches = cv2.DescriptorMatcher_create("BruteForce").knnMatch(features_from_image1,
                                                                            features_from_image2, 2)
         matches = []
-
+        # print(raw_matches)
         for raw_match in raw_matches:
-            if len(raw_match) == 2 and raw_match.distance < raw_match.distance:
+            if len(raw_match) == 2 and raw_match[0].distance < raw_match[1].distance:
                 matches.append((raw_match[0].trainIdx, raw_match[0].queryIdx))
 
-        points_from_image1 = []
-        points_from_image2 = []
-        for match in matches:
-            points_from_image1.append(match[1])
-            points_from_image1.append(match[0])
-
-        points_from_image1 = np.float32(points_from_image1)
-        points_from_image2 = np.float32(points_from_image2)
+        points_from_image1 = np.float32([key_points_from_image1[i] for (_, i) in matches])
+        points_from_image2 = np.float32([key_points_from_image2[i] for (i, _) in matches])
         (homography_graph, status) = cv2.findHomography(points_from_image1, points_from_image2,
-                                                        cv2.RANSAC, 5.0)
+                                                        cv2.RANSAC, 4.0)
 
         return homography_graph
