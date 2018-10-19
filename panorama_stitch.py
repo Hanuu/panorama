@@ -37,7 +37,6 @@ class PanoramaStitcher:
         result = cv2.warpPerspective(image1, homography_matrix,
                                      (image1.shape[1] + image2.shape[1], image1.shape[0]))
 
-        # this part is wrong
         # return result
         result[0:image2.shape[0], 0:image2.shape[1]] = image2
 
