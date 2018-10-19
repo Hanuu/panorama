@@ -23,19 +23,30 @@ def return_stitched_image(path1, path2):
     # cv2.waitKey(0)
     return combined_image
 
-cv2.imshow("Combined Image", return_stitched_image(
+combined_translation_image1 = return_stitched_image(
     "test_data/translation/input1_image1.jpg",
-    "test_data/translation/input2_image1.jpg"))
+    "test_data/translation/input2_image1.jpg")
+cv2.imshow("combined_translation_image1", combined_translation_image1)
 cv2.waitKey(0)
-cv2.imshow("Combined Image", return_stitched_image(
+cv2.imwrite("test_result/combined_translation_image1.jpg", combined_translation_image1)
+
+combined_translation_image2 = return_stitched_image(
     "test_data/translation/input1_image2.jpg",
-    "test_data/translation/input2_image2.jpg"))
+    "test_data/translation/input2_image2.jpg")
+cv2.imshow("combined_translation_image2", combined_translation_image2 )
 cv2.waitKey(0)
-cv2.imshow("Combined Image", return_stitched_image(
-    "test_data/rotate/input1_image1.jpg",
-    "test_data/rotate/input2_image1.jpg"))
+cv2.imwrite("test_result/combined_translation_image2.jpg", combined_translation_image2)
+
+combined_rotate_image1 = return_stitched_image(
+    "test_data/translation/input1_image1.jpg",
+    "test_data/translation/input2_image1.jpg")
+cv2.imshow("combined_rotate_image1", combined_rotate_image1)
 cv2.waitKey(0)
-cv2.imshow("Combined Image", return_stitched_image(
-    "test_data/rotate/input1_image1.jpg",
-    "test_data/rotate/input2_image1.jpg"))
+cv2.imwrite("test_result/combined_rotate_image1.jpg", combined_rotate_image1)
+
+combined_rotate_image2 = return_stitched_image(
+    "test_data/translation/input1_image2.jpg",
+    "test_data/translation/input2_image2.jpg")
+cv2.imshow("combined_rotate_image2", combined_rotate_image2 )
 cv2.waitKey(0)
+cv2.imwrite("test_result/combined_rotate_image2.jpg", combined_rotate_image2)
