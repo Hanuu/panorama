@@ -64,7 +64,7 @@ cv2.imwrite("test_result/combined_scale_image4.jpg", combined_scaled_input4)
 combined_scaled_input5 = return_stitched_image(
     "test_data/scale/rotate/input1_image1.jpg",
     "test_data/scale/rotate/scaled_by_half_image1_input2.jpg")
-cv2.imshow("combined_scaled_image_5", combined_scaled_input1)
+cv2.imshow("combined_scaled_image_5", combined_scaled_input5)
 cv2.waitKey(0)
 cv2.imwrite("test_result/combined_scale_image5.jpg", combined_scaled_input5)
 
@@ -73,14 +73,14 @@ combined_scaled_input6 = return_stitched_image(
     "test_data/scale/rotate/scaled_by_half_image2_input2.jpg")
 cv2.imshow("combined_scaled_image_6", combined_scaled_input6)
 cv2.waitKey(0)
-cv2.imwrite("test_result/combined_scale_image2.jpg", combined_scaled_input6)
+cv2.imwrite("test_result/combined_scale_image6.jpg", combined_scaled_input6)
 
 combined_scaled_input7 = return_stitched_image(
     "test_data/scale/rotate/scaled_by_half_image1_input1.jpg",
     "test_data/scale/rotate/input2_image1.jpg")
 cv2.imshow("combined_scaled_image_7", combined_scaled_input7)
 cv2.waitKey(0)
-cv2.imwrite("test_result/combined_scale_image3.jpg", combined_scaled_input7)
+cv2.imwrite("test_result/combined_scale_image7.jpg", combined_scaled_input7)
 
 combined_scaled_input8 = return_stitched_image(
     "test_data/scale/rotate/scaled_by_half_image2_input1.jpg",
