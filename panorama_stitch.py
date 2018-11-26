@@ -16,6 +16,13 @@ class PanoramaStitcher:
     def __int__(self):
         pass
 
+    def stitch_multiple_images(self, images):
+        number_of_images = len(images)
+        temp_image = images[0]
+        for trial in range(1, number_of_images-1):
+            temp_image = self.stitch_two_images(temp_image, images[trial])
+        return temp_image
+
     def stitch_two_images(self, image1, image2):
         """
         :param image1:
@@ -25,8 +32,8 @@ class PanoramaStitcher:
         (key_points_from_image1, features_from_image1) = self.get_key_points_and_features(image1)
         (key_points_from_image2, features_from_image2) = self.get_key_points_and_features(image2)
 
-        print(features_from_image2)
-        print(features_from_image1)
+        # print(features_from_image2)
+        # print(features_from_image1)
         # print(key_points_from_image2)
         # print(key_points_from_image1)
 
@@ -37,7 +44,6 @@ class PanoramaStitcher:
         result = cv2.warpPerspective(image1, homography_matrix,
                                      (image1.shape[1] + image2.shape[1], image1.shape[0]))
 
-        # return result
         result[0:image2.shape[0], 0:image2.shape[1]] = image2
 
         return result
